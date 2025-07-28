@@ -154,12 +154,6 @@
 // #define USE_FRUSTRATIO2
 
 /**
- * Disables instant input.
- * Mostly used for debugging purposes, or for future-proofing a release if concerned.
- */
-//  #define DISABLE_INSTANT_INPUT
-
-/**
  * Primary graphics microcode selection
  * Define F3DEX_VERSION as one of the following to select the primary graphics microcode:
  * 2 - F3DZEX2 - (Majora's Mask version). HLE emulator compatible, good console performance.
