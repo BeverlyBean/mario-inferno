@@ -260,19 +260,6 @@ extern u64 gspF3DEX3_BrW_PBDataStart[],        gspF3DEX3_BrW_PBDataEnd[];
 extern u64 gspF3DEX3_BrW_PCTextStart[],        gspF3DEX3_BrW_PCTextEnd[];     // F3DEX3 Profiler C
 extern u64 gspF3DEX3_BrW_PCDataStart[],        gspF3DEX3_BrW_PCDataEnd[];
 
-extern u64 gspF3DEX3_BrW_LVPTextStart[],       gspF3DEX3_BrW_LVPTextEnd[];    // F3DEX3 LVP
-extern u64 gspF3DEX3_BrW_LVPDataStart[],       gspF3DEX3_BrW_LVPDataEnd[];
-
-extern u64 gspF3DEX3_BrW_LVP_PATextStart[],    gspF3DEX3_BrW_LVP_PATextEnd[]; // F3DEX3 LVP Profiler A
-extern u64 gspF3DEX3_BrW_LVP_PADataStart[],    gspF3DEX3_BrW_LVP_PADataEnd[];
-
-extern u64 gspF3DEX3_BrW_LVP_PBTextStart[],    gspF3DEX3_BrW_LVP_PBTextEnd[]; // F3DEX3 LVP Profiler B
-extern u64 gspF3DEX3_BrW_LVP_PBDataStart[],    gspF3DEX3_BrW_LVP_PBDataEnd[];
-
-extern u64 gspF3DEX3_BrW_LVP_PCTextStart[],    gspF3DEX3_BrW_LVP_PCTextEnd[]; // F3DEX3 LVP Profiler C
-extern u64 gspF3DEX3_BrW_LVP_PCDataStart[],    gspF3DEX3_BrW_LVP_PCDataEnd[];
-
-
 /**************************************************************************
  *
  * decomp ucode names

@@ -158,16 +158,12 @@ void init_z_buffer(s32 resetZB) {
         return;
     }
 
-#ifdef F3DEX_GBI_3
-    gSPMemset(tempGfxHead++, gPhysicalZBuffer, GPACK_ZDZ(G_MAXFBZ, 0), SCREEN_WIDTH * SCREEN_HEIGHT * 2);
-#else
     gDPSetColorImage(tempGfxHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gPhysicalZBuffer);
     gDPSetFillColor(tempGfxHead++,
                     GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
 
     gDPFillRectangle(tempGfxHead++, 0, gBorderHeight, SCREEN_WIDTH - 1,
                      SCREEN_HEIGHT - 1 - gBorderHeight);
-#endif
     gDisplayListHead = tempGfxHead;
 }
 
@@ -294,31 +290,16 @@ void create_gfx_task_structure(void) {
     gGfxSPTask->task.t.ucode_boot_size = ((u8 *) rspbootTextEnd - (u8 *) rspbootTextStart);
     gGfxSPTask->task.t.flags = (OS_TASK_LOADABLE | OS_TASK_DP_WAIT);
 
-#if defined(F3DEX_GBI_3)
-    #if F3DEX_VERSION == 3 // Standard F3DEX3
-        #if defined(DEBUG_F3DEX3_PROFILER)
-            switch (gF3DEX3ProfilerPage) {
-                case 4: GRUCODE_TASK(F3DEX3_BrW_PC); break;
-                case 3: GRUCODE_TASK(F3DEX3_BrW_PB); break;
-                case 2: GRUCODE_TASK(F3DEX3_BrW_PA); break;
-                default: case 1: GRUCODE_TASK(F3DEX3_BrW); break;
-            }
-        #else
-            GRUCODE_TASK(F3DEX3_BrW);
-        #endif
-    #elif F3DEX_VERSION == 4 // F3DEX3 LVP
-        #if defined(DEBUG_F3DEX3_PROFILER)
-            switch (gF3DEX3ProfilerPage) {
-                case 4: GRUCODE_TASK(F3DEX3_BrW_LVP_PC); break;
-                case 3: GRUCODE_TASK(F3DEX3_BrW_LVP_PB); break;
-                case 2: GRUCODE_TASK(F3DEX3_BrW_LVP_PA); break;
-                default: case 1: GRUCODE_TASK(F3DEX3_BrW_LVP); break;
-            }
-        #else
-            GRUCODE_TASK(F3DEX3_BrW_LVP);
-        #endif
+#if F3DEX_VERSION == 3 // Standard F3DEX3
+    #if defined(DEBUG_F3DEX3_PROFILER)
+        switch (gF3DEX3ProfilerPage) {
+            case 4: GRUCODE_TASK(F3DEX3_BrW_PC); break;
+            case 3: GRUCODE_TASK(F3DEX3_BrW_PB); break;
+            case 2: GRUCODE_TASK(F3DEX3_BrW_PA); break;
+            default: case 1: GRUCODE_TASK(F3DEX3_BrW); break;
+        }
     #else
-        #error "Invalid F3DEX3 selection."
+        GRUCODE_TASK(F3DEX3_BrW);
     #endif
 #elif defined(F3DEX_GBI_2)
     GRUCODE_TASK(F3DZEX2_NoN_fifo)

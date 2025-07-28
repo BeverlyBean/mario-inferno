@@ -163,10 +163,7 @@
  * Primary graphics microcode selection
  * Define F3DEX_VERSION as one of the following to select the primary graphics microcode:
  * 2 - F3DZEX2 - (Majora's Mask version). HLE emulator compatible, good console performance.
- * 3 - F3DEX3  - Created by Sauraen. Better console performance in most situations. 
- * 4 - F3DEX3 LVP (legacy vertex pipeline) - F3DEX3 with legacy vertex pipeline.
- *                                           Lowers RSP processing time at the cost of new features.
- *                                           Read F3DEX3 README for more information.
+ * 3 - F3DEX3  - Created by Sauraen. Better console performance in most situations.
  * All microcodes provided by HackerSM64 use the "NoN" (no near-field clipping) variants.
  * A built-in profiler is available for F3DEX3 and can be enabled inside config/config_debug.h
  * under DEBUG_F3DEX3_PROFILER.

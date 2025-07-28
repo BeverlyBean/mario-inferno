@@ -151,25 +151,13 @@ SECTIONS
 
 // Primary grucode
 
-#if (defined(F3DEX_GBI_3))
-   #if F3DEX_VERSION == 3
+#if F3DEX_VERSION == 3
       lib/PR/f3dex3/gspF3DEX3_BrW.o(.text*);
       #if (defined(DEBUG_F3DEX3_PROFILER))
          lib/PR/f3dex3/gspF3DEX3_BrW_PA.o(.text*);
          lib/PR/f3dex3/gspF3DEX3_BrW_PB.o(.text*);
          lib/PR/f3dex3/gspF3DEX3_BrW_PC.o(.text*);
       #endif
-
-   #elif F3DEX_VERSION == 4
-      lib/PR/f3dex3/gspF3DEX3_BrW_LVP.o(.text*);
-      #if (defined(DEBUG_F3DEX3_PROFILER))
-         lib/PR/f3dex3/gspF3DEX3_BrW_LVP_PA.o(.text*);
-         lib/PR/f3dex3/gspF3DEX3_BrW_LVP_PB.o(.text*);
-         lib/PR/f3dex3/gspF3DEX3_BrW_LVP_PC.o(.text*);
-      #endif
-   #else
-      #error "Invalid F3DEX3 selection."
-   #endif
 #elif (defined(F3DEX_GBI_2))
       lib/PR/f3dzex2/gspF3DZEX2.NoN.fifo.o(.text*)
 #else
@@ -179,7 +167,7 @@ SECTIONS
 // Optional line microcode
 
 #ifdef ENABLE_LINE_UCODE
-   #if (defined(F3DEX_GBI_2))
+   #if F3DEX_VERSION == 2
          lib/PR/f3dzex2/gspL3DZEX2.fifo.o(.text*)
    #endif
 #endif
