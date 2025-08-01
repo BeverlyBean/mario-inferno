@@ -293,7 +293,7 @@ void create_gfx_task_structure(void) {
     gGfxSPTask->task.t.ucode_boot_size = ((u8 *) rspbootTextEnd - (u8 *) rspbootTextStart);
     gGfxSPTask->task.t.flags = (OS_TASK_LOADABLE | OS_TASK_DP_WAIT);
 
-#if F3DEX_VERSION == 3 // Standard F3DEX3
+#ifdef F3DEX_GBI_3
     #if defined(DEBUG_F3DEX3_PROFILER)
         switch (gF3DEX3ProfilerPage) {
             case 4: GRUCODE_TASK(F3DEX3_BrW_PC); break;
