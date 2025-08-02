@@ -30,10 +30,8 @@ CONSOLE ?= n64
 $(eval $(call validate-option,CONSOLE,n64 bb))
 
 ifeq      ($(CONSOLE),n64)
-  INCLUDE_DIRS   += include/n64
   LIBS_DIR       := lib/n64
 else ifeq ($(CONSOLE),bb)
-  INCLUDE_DIRS   += include/ique
   LIBS_DIR       := lib/ique
   DEFINES        += BBPLAYER=1
 endif
@@ -446,15 +444,10 @@ ifeq ($(LD), tools/mips64-elf-ld)
   endif
 endif
 
-ifeq ($(TARGET_N64),1)
-  TARGET_CFLAGS := -nostdinc -DTARGET_N64 -D_LANGUAGE_C
-  CC_CFLAGS := -fno-builtin
-endif
+TARGET_CFLAGS := -nostdinc -DTARGET_N64 -D_LANGUAGE_C
+CC_CFLAGS := -fno-builtin
 
-INCLUDE_DIRS += include $(BUILD_DIR) $(BUILD_DIR)/include src .
-ifeq ($(TARGET_N64),1)
-  INCLUDE_DIRS += include/libc
-endif
+INCLUDE_DIRS := include include/n64 include/libc $(BUILD_DIR) $(BUILD_DIR)/include src .
 
 C_DEFINES := $(foreach d,$(DEFINES),-D$(d))
 DEF_INC_CFLAGS := $(foreach i,$(INCLUDE_DIRS),-I$(i)) $(C_DEFINES)
