@@ -79,6 +79,7 @@
 #define	M_GFXTASK	1
 #define	M_AUDTASK	2
 #define	M_VIDTASK	3
+#define M_HVQTASK	6
 
 /**************************************************************************
  *
