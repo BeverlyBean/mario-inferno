@@ -26,10 +26,11 @@ volatile F3DEX3YieldDataFooter gRSPProfilingResults;
  */
 
 void extract_f3dex3_profiler_data() {
-    F3DEX3YieldDataFooter* footer = (F3DEX3YieldDataFooter*)((u8*)gGfxSPTaskYieldBuffer +
+   F3DEX3YieldDataFooter *footer = (F3DEX3YieldDataFooter*)((u8*)gGfxSPTaskYieldBuffer +
                                     OS_YIELD_DATA_SIZE - sizeof(F3DEX3YieldDataFooter));
     osInvalDCache(footer, sizeof(F3DEX3YieldDataFooter));
-    bcopy(footer, &gRSPProfilingResults, sizeof(F3DEX3YieldDataFooter));
+    gRSPProfilingResults.dummy_alignment[0] = footer->dummy_alignment[0];
+    gRSPProfilingResults.dummy_alignment[1] = footer->dummy_alignment[1];
 }
 
 /**
@@ -271,9 +272,9 @@ static f32 calculate_distance_from_mario(s16 x, s16 y, s16 z) {
         return 0.0f;
     }
 
-    register f32 distX = ABS(gMarioState->pos[0] - (f32)x);
-    register f32 distY = ABS(gMarioState->pos[1] - (f32)y);
-    register f32 distZ = ABS(gMarioState->pos[2] - (f32)z);
+    f32 distX = ABS(gMarioState->pos[0] - (f32)x);
+    f32 distY = ABS(gMarioState->pos[1] - (f32)y);
+    f32 distZ = ABS(gMarioState->pos[2] - (f32)z);
 
     return sqr(distX + distY + distZ);
 }
