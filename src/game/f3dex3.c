@@ -264,7 +264,7 @@ void set_ambient_light(u8 r, u8 g, u8 b) {
     sGlobalAmbientLight->l.col[1] = g;
     sGlobalAmbientLight->l.col[2] = b;
 
-    bcopy(&sGlobalAmbientLight->l.col[0], &sGlobalAmbientLight->l.colc[0], sizeof(u8) * 3);
+    *(u32*)&sGlobalAmbientLight->l.colc[0] = *(u32*)&sGlobalAmbientLight->l.col[0];
 }
 
 static f32 calculate_distance_from_mario(s16 x, s16 y, s16 z) {
