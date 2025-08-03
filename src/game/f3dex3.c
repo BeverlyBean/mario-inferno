@@ -17,8 +17,7 @@
 #include "f3dex3.h"
 
 #ifdef DEBUG_F3DEX3_PROFILER
-u32 gF3DEX3ProfilerPage = 0;
-
+volatile u32 gF3DEX3ProfilerPage = 0;
 volatile F3DEX3YieldDataFooter gRSPProfilingResults;
 
 /**

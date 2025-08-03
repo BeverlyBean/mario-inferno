@@ -329,6 +329,9 @@ void init_rcp(s32 resetZB) {
     gSPDisplayList(gDisplayListHead++, init_rdp);
     gSPDisplayList(gDisplayListHead++, init_rsp);
     init_z_buffer(resetZB);
+#ifdef F3DEX_GBI_3
+    gSPFlush(gDisplayListHead++);
+#endif
     select_framebuffer();
 }
 

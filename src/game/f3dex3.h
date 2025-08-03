@@ -81,7 +81,7 @@ typedef struct {
     u32 ucode; /* Not a perf counter, can ignore */
 } F3DEX3YieldDataFooter;
 
-extern u32 gF3DEX3ProfilerPage;
+extern volatile u32 gF3DEX3ProfilerPage;
 extern volatile F3DEX3YieldDataFooter gRSPProfilingResults;
 
 void extract_f3dex3_profiler_data();
