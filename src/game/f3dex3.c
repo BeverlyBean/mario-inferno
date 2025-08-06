@@ -149,7 +149,7 @@ static Ambient *sGlobalAmbientLight = NULL;
   * If you plan to use the lighting engine similarly to the older one by wiseguy, use NUMLIGHTS_1.
   */
 
-u8 gLightNumBase = NUMLIGHTS_3; // Start from this slot when adding dynamic lights.
+u8 gLightNumBase = NUMLIGHTS_1; // Start from this slot when adding dynamic lights.
 
 /**
   * Create an F3DEX3 point light.
