@@ -71,6 +71,9 @@ enum LevelCommands {
     /*0x3D*/ LEVEL_CMD_PUPPYVOLUME,
     /*0x3E*/ LEVEL_CMD_CHANGE_AREA_SKYBOX,
     /*0x3F*/ LEVEL_CMD_SET_ECHO,
+    /*0x40*/ LEVEL_CMD_ADD_POINT_LIGHT,
+    /*0x41*/ LEVEL_CMD_ADD_DIRECTIONAL_LIGHT,
+    /*0x42*/ LEVEL_CMD_SET_AMBIENT_LIGHT,
 };
 
 enum LevelActs {
@@ -471,6 +474,21 @@ enum GoddardScene {
 
 #define GET_OR_SET(op, var) \
     CMD_BBBB(LEVEL_CMD_GET_OR_SET_VAR, 0x04, op, var)
+
+// F3DEX Lighting Engine
+#define POINT_LIGHT(posX, posY, posZ, red, green, blue, size, constant, quadratic, linear, always) \
+    CMD_BBBB(LEVEL_CMD_ADD_POINT_LIGHT, red, green, blue), \
+    CMD_BBBB(constant, quadratic, linear, always), \
+    CMD_HH(posX, posY), \
+    CMD_HH(posZ, size)
+
+#define DIRECTIONAL_LIGHT(dirX, dirY, dirZ, red, green, blue, size) \
+    CMD_BBBB(LEVEL_CMD_ADD_DIRECTIONAL_LIGHT, dirX, dirY, dirZ), \
+    CMD_BBBB(red, green, blue, size)
+
+#define AMBIENT_LIGHT(red, green, blue, pad) \
+    CMD_BBBB(LEVEL_CMD_SET_AMBIENT_LIGHT, red, green, blue), \
+    CMD_W(pad) // Fast64 Compatibility
 
 // Presets
 

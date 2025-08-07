@@ -32,6 +32,8 @@
 
 #include "config.h"
 
+#include "game/f3dex3.h"
+
 #define NUM_PAINTINGS 45
 
 #define CMD_GET(type, offset) (*(type *) (CMD_PROCESS_OFFSET(offset) + (u8 *) sCurrentCmd))
@@ -858,6 +860,30 @@ static void level_cmd_set_echo(void) {
     sCurrentCmd = CMD_NEXT;
 }
 
+static void level_cmd_add_point_light(void) {
+    add_point_light(CMD_GET(s16, 9), CMD_GET(s16, 11), CMD_GET(s16, 13),
+                    CMD_GET(u8, 2), CMD_GET(u8, 3), CMD_GET(u8, 4),
+                    CMD_GET(u8, 5), CMD_GET(u8, 6), CMD_GET(u8, 7),
+                    CMD_GET(u8, 15), CMD_GET(u8, 8));
+
+    sCurrentCmd = CMD_NEXT;
+}
+
+static void level_cmd_add_directional_light(void) {
+    add_directional_light(
+                    CMD_GET(u8, 5), CMD_GET(u8, 6), CMD_GET(u8, 7),
+                    CMD_GET(s8, 2), CMD_GET(s8, 3), CMD_GET(s8, 4),
+                    CMD_GET(u8, 8));
+
+    sCurrentCmd = CMD_NEXT;
+}
+
+static void level_cmd_set_ambient_light(void) {
+    set_ambient_light(CMD_GET(u8, 2), CMD_GET(u8, 3), CMD_GET(u8, 4));
+
+    sCurrentCmd = CMD_NEXT;
+}
+
 static void (*LevelScriptJumpTable[])(void) = {
     /*LEVEL_CMD_LOAD_AND_EXECUTE            */ level_cmd_load_and_execute,
     /*LEVEL_CMD_EXIT_AND_EXECUTE            */ level_cmd_exit_and_execute,
@@ -923,6 +949,9 @@ static void (*LevelScriptJumpTable[])(void) = {
     /*LEVEL_CMD_PUPPYVOLUME                 */ level_cmd_puppyvolume,
     /*LEVEL_CMD_CHANGE_AREA_SKYBOX          */ level_cmd_change_area_skybox,
     /*LEVEL_CMD_SET_ECHO                    */ level_cmd_set_echo,
+    /*F3DEX3 Point Light                    */ level_cmd_add_point_light,
+    /*F3DEX3 Directional Light              */ level_cmd_add_directional_light,
+    /*F3DEX3 Ambient Light                  */ level_cmd_set_ambient_light,
 };
 
 struct LevelCommand *level_script_execute(struct LevelCommand *cmd) {
